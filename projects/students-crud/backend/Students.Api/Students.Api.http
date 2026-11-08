@@ -1,0 +1,32 @@
+@host = http://localhost:5080
+
+###
+GET {{host}}/api/students
+
+###
+GET {{host}}/api/students/1
+
+###
+POST {{host}}/api/students
+Content-Type: application/json
+
+{
+  "firstName": "Maria",
+  "lastName": "Green",
+  "age": 22,
+  "major": "Computer Science"
+}
+
+###
+PUT {{host}}/api/students/1
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Smith",
+  "age": 22,
+  "major": "Data Science"
+}
+
+###
+DELETE {{host}}/api/students/2

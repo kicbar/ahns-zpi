@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:5089
+
+### Get all students
+GET {{baseUrl}}/odata/students
+Accept: application/json
+
+### Get students older than 21
+GET {{baseUrl}}/odata/students?$filter=Age gt 21
+Accept: application/json
+
+### Sort students by age descending
+GET {{baseUrl}}/odata/students?$orderby=Age desc
+Accept: application/json
+
+### Select first and last names only
+GET {{baseUrl}}/odata/students?$select=FirstName,LastName
+Accept: application/json

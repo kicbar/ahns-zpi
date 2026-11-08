@@ -1,0 +1,63 @@
+# .NET / ASP.NET Core
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/TestResults/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pdb
+*.cache
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+_ReSharper*/
+*.DotSettings.user
+.vscode/*
+!.vscode/extensions.json
+
+# ASP.NET Core local secrets and configuration overrides
+**/appsettings.Development.local.json
+**/appsettings.Local.json
+**/appsettings.*.local.json
+**/secrets.json
+*.publishsettings
+*.pubxml.user
+
+# Angular / Node.js
+**/node_modules/
+**/dist/
+**/.angular/
+**/coverage/
+**/.cache/
+**/.nx/
+**/.sass-cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment variables / credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# OS / temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+*.log
+
+# Local SQL Server database files / backups
+*.mdf
+*.ldf
+*.ndf
+*.bak
+*.bacpac

@@ -1,0 +1,75 @@
+<div class="layout">
+  <header>
+    <div class="brand"><span class="logo">S</span><span>Students <strong>CRUD</strong></span></div>
+    <span class="tag">Angular + ASP.NET Core</span>
+  </header>
+
+  <main>
+    <div class="heading">
+      <div>
+        <p class="eyebrow">Web Programming Lab</p>
+        <h1>Student Management</h1>
+        <p class="intro">Create, view, update, and delete students. The data is stored only in the backend memory.</p>
+      </div>
+      <div class="counter"><strong>{{ students().length }}</strong><span>students</span></div>
+    </div>
+
+    <div *ngIf="errorMessage()" class="alert error" role="alert">{{ errorMessage() }}</div>
+    <div *ngIf="successMessage()" class="alert success" role="status">{{ successMessage() }}</div>
+
+    <section class="panel form-panel">
+      <div class="section-title">
+        <div><span class="overline">FORM</span><h2>{{ editingId === null ? 'Add Student' : 'Edit Student #' + editingId }}</h2></div>
+      </div>
+
+      <form #studentForm="ngForm" (ngSubmit)="save(studentForm)" novalidate>
+        <div class="fields">
+          <label>First Name
+            <input name="firstName" [(ngModel)]="formData.firstName" placeholder="e.g. Maria">
+          </label>
+          <label>Last Name
+            <input name="lastName" [(ngModel)]="formData.lastName" placeholder="e.g. Green">
+          </label>
+          <label>Age
+            <input name="age" type="number" [(ngModel)]="formData.age">
+          </label>
+          <label>Major
+            <input name="major" [(ngModel)]="formData.major" placeholder="e.g. Computer Science">
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit" class="primary" [disabled]="isSaving() || isDeleting()">{{ isSaving() ? 'Saving...' : (editingId === null ? '+ Add Student' : 'Save Changes') }}</button>
+          <button type="button" class="secondary" *ngIf="editingId !== null" (click)="cancelEdit(studentForm)">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="section-title">
+        <div><span class="overline">API DATA</span><h2>Students</h2></div>
+        <button type="button" class="secondary" (click)="loadStudents()" [disabled]="isLoading()">Pobierz</button>
+      </div>
+      <div *ngIf="isLoading()" class="empty">Loading students...</div>
+      <div *ngIf="!isLoading() && !hasLoaded()" class="empty">Click Pobierz to load students from the API.</div>
+      <div *ngIf="!isLoading() && hasLoaded() && students().length === 0" class="empty">No students found.</div>
+      <div class="table-scroll" *ngIf="!isLoading() && students().length > 0">
+        <table>
+          <thead><tr><th>ID</th><th>Full Name</th><th>Age</th><th>Major</th><th class="action-col">Actions</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let student of students()">
+              <td class="muted">#{{ student.id }}</td>
+              <td><strong>{{ student.firstName }} {{ student.lastName }}</strong></td>
+              <td>{{ student.age }}</td>
+              <td><span class="field-pill">{{ student.major }}</span></td>
+              <td class="row-actions">
+                <button type="button" class="edit" (click)="edit(student)">Edit</button>
+                <button type="button" class="delete" (click)="remove(student)" [disabled]="isDeleting()">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <p class="note">The in-memory list resets to the sample students when the backend restarts. No database or file storage is used.</p>
+  </main>
+</div>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="OData.Demo/OData.Demo.csproj" />
+  <Project Path="RestApi.Demo/RestApi.Demo.csproj" />
+  <Project Path="WebSocket.Demo/WebSocket.Demo.csproj" />
+</Solution>
